@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarjeta de Presentación Digital - Clarity Óptica</title>
+    <title>Tarjeta Digital - Clarity Óptica</title>
     <!-- Tailwind CSS para estilos rápidos y modernos -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts para una tipografía elegante -->
@@ -636,9 +636,9 @@
 
                 // Enlace de confirmación automatizada por WhatsApp
                 getWhatsAppConfirmationLink() {
-                    if (!this.bookedDateString || !this.bookedTimeString) return 'https://wa.me/3205224697';
+                    if (!this.bookedDateString || !this.bookedTimeString) return 'https://wa.link/94pe3n';
                     const baseMessage = `Hola Clarity Óptica, me gustaría confirmar la reserva realizada en su Tarjeta Digital.\n\n📅 Fecha: ${this.bookedDateString}\n⏰ Hora: ${this.bookedTimeString}`;
-                    return `https://wa.me/3205224697?text=${encodeURIComponent(baseMessage)}`;
+                    return `https://wa.link/94pe3n?text=${encodeURIComponent(baseMessage)}`;
                 },
 
                 // Horas dinámicas disponibles según el día de la semana
