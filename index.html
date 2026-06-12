@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta de Presentación Digital - Clarity Óptica</title>
+    <!-- Tailwind CSS para estilos rápidos y modernos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts para una tipografía elegante -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para íconos realistas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Alpine.js para interactividad ligera (modal) -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .icon-shadow {
+            box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.2);
+        }
+        .interactive-element {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-element:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.3);
+        }
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        /* Animación escalonada para íconos */
+        .icon-animate {
+            opacity: 0;
+            animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        /* Evita el scroll del body cuando algún modal está abierto */
+        body.modal-open {
+            overflow: hidden;
+        }
+        /* Custom scrollbar para los modales */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-100 to-emerald-50 min-h-screen">
+
+    <div class="w-full min-h-screen flex items-center justify-center p-0 sm:p-4">
+        <!-- Contenedor Principal (Vista Móvil en Escritorio) -->
+        <div x-data="appData()" 
+             x-init="init()" 
+             x-watch="qrModal || servicesModal || scheduleModal || installModal || calendarModal || timePickerModal || successModal, value => { document.body.classList.toggle('modal-open', value) }" 
+             class="w-full min-h-screen sm:min-h-0 sm:h-auto sm:max-w-md bg-white sm:shadow-2xl sm:rounded-3xl overflow-hidden fade-in flex flex-col justify-between">
+            
+            <div>
+                <!-- Sección del Banner Superior -->
+                <div class="relative h-48 bg-cover bg-center" style="background-image: url('https://i.postimg.cc/xCPc9jkX/Whats-App-Image-2026-06-12-at-1-40-27-PM.jpg');">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
+                </div>
+
+                <!-- Sección de Foto de Perfil -->
+                <div class="flex justify-center -mt-20 z-10 relative">
+                    <div class="relative">
+                        <img class="w-36 h-36 rounded-full border-4 border-white object-cover shadow-xl bg-slate-100" 
+                             src="https://i.postimg.cc/MZsgjbxk/CLARITY.png" 
+                             alt="Foto de perfil de la Dra. Ana Pérez" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/150x150/e2e8f0/0f172a?text=Dra.+Ana+Perez';">
+                        <div class="absolute bottom-2 right-2 bg-emerald-500 rounded-full w-8 h-8 flex items-center justify-center border-2 border-white shadow">
+                            <i class="fa-solid fa-check text-white text-sm"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección de Información -->
+                <div class="text-center px-6 pt-4 pb-2">
+                    <h1 class="text-3xl font-bold text-slate-800 tracking-tight">CLARITY ÓPTICA</h1>
+                    <p class="text-emerald-600 font-semibold text-lg">Taller Óptico</p>
+                    <p class="text-xs text-slate-400 mt-2 italic flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-circle-info text-emerald-500"></i> Toca los botones para interactuar
+                    </p>
+                </div>
+
+                <!-- Sección de Iconos Interactivos -->
+                <div class="px-6 pt-6 pb-4">
+                    <div class="grid grid-cols-3 gap-y-6 gap-x-4">
+                        <!-- Llamar -->
+                        <a href="tel:+3146280348" class="flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.1s;" title="Llámame">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center icon-shadow">
+                                <i class="fa-solid fa-phone text-2xl"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-600 mt-2">Llamar</p>
+                        </a>
+                        <!-- Horario -->
+                        <div @click="scheduleModal = true" class="cursor-pointer flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.2s;" title="Ver Horario de Atención">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center icon-shadow">
+                                <i class="fa-solid fa-clock text-2xl"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-600 mt-2">Horario</p>
+                        </div>
+                        <!-- Servicios -->
+                        <div @click="servicesModal = true" class="cursor-pointer flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.3s;" title="Ver mis Servicios">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center icon-shadow">
+                                <i class="fa-solid fa-hand-holding-heart text-2xl"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-600 mt-2">Servicios</p>
+                        </div>
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/clarity.franco" target="_blank" class="flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.4s;" title="Sígueme en Facebook">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center icon-shadow">
+                                <i class="fa-brands fa-facebook-f text-2xl"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-600 mt-2">Facebook</p>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/clarityoptica/" target="_blank" class="flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.5s;" title="Sígueme en Instagram">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center icon-shadow">
+                                <i class="fa-brands fa-instagram text-2xl"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-600 mt-2">Instagram</p>
+                        </a>
+                        <!-- WhatsApp -->
+                        <a href="https://wa.link/r8bxd0" target="_blank" class="flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.6s;" title="Chatea por WhatsApp">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center icon-shadow">
+                                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-600 mt-2">WhatsApp</p>
+                        </a>
+                        <!-- Correo -->
+                        <a href="claritycentroptico@gmail.com" class="flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.7s;" title="Envíame un Correo">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center icon-shadow">
+                                <i class="fa-solid fa-envelope text-2xl"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-600 mt-2">Correo</p>
+                        </a>
+                        <!-- Ubicación -->
+                        <a href="https://www.google.com/maps/place/Cl+24+%2321-44,+Manizales,+Caldas/@5.0680275,-75.5190666,17z/data=!4m6!3m5!1s0x8e476ffa73c3076f:0x4599efa8c8bf7aff!8m2!3d5.0680275!4d-75.5164917!16s%2Fg%2F11sdqsg6cn?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.8s;" title="Ver mi Ubicación">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center icon-shadow">
+                                <i class="fa-solid fa-location-dot text-2xl"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-600 mt-2">Ubicación</p>
+                        </a>
+                        <!-- Instalar -->
+                        <div @click="installModal = true" class="cursor-pointer flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.9s;" title="Cómo Instalar en tu Dispositivo">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center icon-shadow">
+                                <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-600 mt-2">Instalar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones de Acción Inferiores -->
+            <div class="px-6 py-6 space-y-4 bg-slate-50 border-t border-slate-100 sm:rounded-b-3xl">
+                <button @click="calendarModal = true" class="block w-full bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white font-bold py-4 px-4 rounded-xl text-center interactive-element uppercase tracking-wider text-sm shadow-md transition-all duration-300">
+                    <i class="fa-solid fa-calendar-days mr-2"></i> Agenda tu Cita
+                </button>
+                <div class="flex gap-4">
+                    <button @click="downloadVCard()" class="flex-1 bg-white hover:bg-slate-100 text-slate-700 font-bold py-3 px-4 rounded-xl text-center border border-slate-200 shadow-sm interactive-element flex items-center justify-center gap-2 text-sm transition-all duration-300">
+                        <i class="fa-solid fa-user-plus text-emerald-600"></i> Guardar Contacto
+                    </button>
+                    <button @click="qrModal = true" class="w-1/3 bg-white hover:bg-slate-100 text-slate-700 font-bold py-3 px-4 rounded-xl text-center border border-slate-200 shadow-sm interactive-element flex items-center justify-center gap-2 text-sm transition-all duration-300">
+                        <i class="fa-solid fa-qrcode text-emerald-600"></i> QR
+                    </button>
+                </div>
+                <p class="text-center text-[10px] text-slate-400 mt-2">Clarity Óptica © 2026. Todos los derechos reservados.</p>
+            </div>
+
+            <!-- MODALS -->
+
+            <!-- Modal del Código QR -->
+            <div x-show="qrModal" @keydown.escape.window="qrModal = false" class="fixed inset-0 bg-black/75 flex items-center justify-center z-50 p-4" x-transition.opacity style="display: none;">
+                <div @click.away="qrModal = false" class="bg-white rounded-2xl shadow-2xl w-full max-w-sm text-center border border-slate-100 overflow-hidden" x-transition.scale>
+                    <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-5">
+                        <h3 class="text-xl font-bold flex items-center justify-center gap-2"><i class="fa-solid fa-qrcode"></i> Compartir Contacto</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-500 text-sm mb-5">
+                            ¡Escanea este código QR con la cámara de otro teléfono para abrir mi tarjeta de presentación digital al instante!
+                        </p>
+                        <div class="bg-slate-50 p-4 rounded-xl inline-block shadow-inner border border-slate-100">
+                            <img :src="getQrCodeUrl()" alt="Código QR de Contacto" class="w-52 h-52 mx-auto">
+                        </div>
+                        <div class="https://postimg.cc/5XrVPvHv">
+                            <button @click="qrModal = false" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2 px-6 rounded-xl transition-colors text-sm w-full">
+                                Cerrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Servicios -->
+            <div x-show="servicesModal" @keydown.escape.window="servicesModal = false" class="fixed inset-0 bg-black/75 flex items-center justify-center z-50 p-4" x-transition.opacity style="display: none;">
+                <div @click.away="servicesModal = false" class="bg-white rounded-3xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col border border-slate-100 overflow-hidden animate-slide-up" x-transition.scale>
+                    <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-5 text-center flex-none">
+                        <h3 class="text-xl font-bold flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-hand-holding-heart"></i> Servicios Especializados
+                        </h3>
+                    </div>
+                    
+                    <!-- Lista de servicios scrollable -->
+                    <div class="p-6 overflow-y-auto space-y-6 custom-scrollbar flex-grow bg-slate-50">
+                        
+                        <!-- Servicio 1 -->
+                        <div class="flex items-start gap-4 bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:border-emerald-200 transition-all">
+                            <img src="https://i.postimg.cc/1XMYQFcN/e-visual.jpg" 
+                                 alt="Consulta Personalizada" 
+                                 class="w-20 h-20 rounded-xl object-cover shadow-sm flex-none"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/100x100/e2e8f0/0f172a?text=Consulta';">
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-base">Examen visual</h4>
+                                <p class="text-slate-500 text-xs mt-1 leading-relaxed">Evaluación completa de la salud visual para detectar problemas de visión y determinar la fórmula adecuada para cada paciente.</p>
+                            </div>
+                        </div>
+
+                        <!-- Servicio 2 -->
+                        <div class="flex items-start gap-4 bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:border-emerald-200 transition-all">
+                            <img src="https://i.postimg.cc/xCfvS4sj/cristales.jpg" 
+                                 alt="Nutrición Deportiva" 
+                                 class="w-20 h-20 rounded-xl object-cover shadow-sm flex-none"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/100x100/e2e8f0/0f172a?text=Deporte';">
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-base">Adaptación de lentes oftálmicos</h4>
+                                <p class="text-slate-500 text-xs mt-1 leading-relaxed">Asesoría personalizada para elegir lentes que mejoren la visión y se ajusten a las necesidades diarias del usuario.</p>
+                            </div>
+                        </div>
+
+                        <!-- Servicio 3 -->
+                        <div class="flex items-start gap-4 bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:border-emerald-200 transition-all">
+                            <img src="https://i.postimg.cc/d0qk7T8Q/gafas.jpg" 
+                                 alt="Control de Peso Sostenible" 
+                                 class="w-20 h-20 rounded-xl object-cover shadow-sm flex-none"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/100x100/e2e8f0/0f172a?text=Control';">
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-base">Venta de monturas</h4>
+                                <p class="text-slate-500 text-xs mt-1 leading-relaxed">Amplia variedad de monturas modernas, clásicas y deportivas para todas las edades y estilos.</p>
+                            </div>
+                        </div>
+
+                        <!-- Servicio 4 -->
+                        <div class="flex items-start gap-4 bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:border-emerald-200 transition-all">
+                            <img src="https://i.postimg.cc/bY2xfkgL/entrada-lentes-contacto.jpg" 
+                                 alt="Nutrición Clínica" 
+                                 class="w-20 h-20 rounded-xl object-cover shadow-sm flex-none"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/100x100/e2e8f0/0f172a?text=Clinica';">
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-base">Lentes de contacto</h4>
+                                <p class="text-slate-500 text-xs mt-1 leading-relaxed">Suministro y adaptación de lentes de contacto blandos, tóricos y multifocales para mayor comodidad visual.</p>
+                            </div>
+                        </div>
+
+                        <!-- Servicio 5 -->
+                        <div class="flex items-start gap-4 bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:border-emerald-200 transition-all">
+                            <img src="https://i.postimg.cc/0jqbsM5t/taller-optico-en-vitoria.jpg" 
+                                 alt="Coaching de Hábitos" 
+                                 class="w-20 h-20 rounded-xl object-cover shadow-sm flex-none"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/100x100/e2e8f0/0f172a?text=Habitos';">
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-base">Reparación y Mantenimiento de Gafas</h4>
+                                <p class="text-slate-500 text-xs mt-1 leading-relaxed">Ajuste, cambio de tornillos, soldaduras menores, venta de accesorios y limpieza profesional para prolongar la vida útil de las gafas.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 bg-white border-t border-slate-100 flex justify-center flex-none">
+                        <button @click="servicesModal = false" class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-bold py-3 px-8 rounded-xl w-full hover:from-emerald-700 hover:to-teal-800 transition-colors shadow-sm">
+                            Cerrar Servicios
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Horario de Atención -->
+            <div x-show="scheduleModal" @keydown.escape.window="scheduleModal = false" class="fixed inset-0 bg-black/75 flex items-center justify-center z-50 p-4" x-transition.opacity style="display: none;">
+                <div @click.away="scheduleModal = false" class="bg-white rounded-2xl shadow-2xl w-full max-w-sm text-center border border-slate-100 overflow-hidden" x-transition.scale>
+                    <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-5">
+                        <h3 class="text-xl font-bold flex items-center justify-center gap-2"><i class="fa-solid fa-clock"></i> Horario de Atención</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4 text-slate-600">
+                            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                                <span class="font-semibold text-slate-800">Lunes a Viernes</span>
+                                <span class="bg-emerald-50 text-emerald-700 text-sm px-3 py-1 rounded-full font-medium">9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                                <span class="font-semibold text-slate-800">Sábados</span>
+                                <span class="bg-emerald-50 text-emerald-700 text-sm px-3 py-1 rounded-full font-medium">9:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1">
+                                <span class="font-semibold text-slate-800">Domingos</span>
+                                <span class="bg-red-50 text-red-600 text-sm px-3 py-1 rounded-full font-medium">Cerrado</span>
+                            </div>
+                        </div>
+                        <div class="mt-8 flex justify-center">
+                            <button @click="scheduleModal = false" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-6 rounded-xl transition-colors text-sm w-full">
+                                Entendido
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Instalación -->
+            <div x-show="installModal" @keydown.escape.window="installModal = false" class="fixed inset-0 bg-black/75 flex items-center justify-center z-50 p-4" x-transition.opacity style="display: none;">
+                <div @click.away="installModal = false" class="bg-white rounded-3xl shadow-2xl w-full max-w-md max-h-[85vh] flex flex-col border border-slate-100 overflow-hidden" x-transition.scale>
+                    <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-6 text-center">
+                        <h3 class="text-xl font-bold flex items-center justify-center gap-2"><i class="fa-solid fa-download"></i> Instalar en tu Dispositivo</h3>
+                        <p class="text-emerald-100 text-xs mt-2">Accede a mi tarjeta con un solo toque desde tu pantalla de inicio, ¡como si fuera una App oficial sin consumir espacio!</p>
+                    </div>
+                    <div class="p-6 overflow-y-auto space-y-5 custom-scrollbar bg-slate-50">
+                        <!-- iPhone -->
+                        <div class="p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+                            <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-3 text-base">
+                                <i class="fa-brands fa-apple text-emerald-600 text-xl"></i> Para iPhone (Safari)
+                            </h4>
+                            <ol class="list-decimal list-inside text-slate-600 space-y-2 text-xs leading-relaxed pl-1">
+                                <li>Abre este enlace desde tu navegador <strong class="text-slate-800">Safari</strong>.</li>
+                                <li>Pulsa el botón de <strong class="text-slate-800">Compartir</strong> <i class="fa-solid fa-arrow-up-from-bracket text-emerald-600 mx-0.5"></i> (abajo en la barra del sistema).</li>
+                                <li>Desplázate y selecciona <strong class="text-slate-800">"Agregar a la pantalla de inicio"</strong>.</li>
+                                <li>Asigna el nombre y presiona <strong class="text-slate-800">Agregar</strong> en la esquina superior.</li>
+                            </ol>
+                        </div>
+                        
+                        <!-- Android -->
+                        <div class="p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+                            <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-3 text-base">
+                                <i class="fa-brands fa-android text-emerald-600 text-xl"></i> Para Android (Chrome)
+                            </h4>
+                            <ol class="list-decimal list-inside text-slate-600 space-y-2 text-xs leading-relaxed pl-1">
+                                <li>Abre este enlace en <strong class="text-slate-800">Google Chrome</strong>.</li>
+                                <li>Pulsa el ícono de los <strong class="text-slate-800">tres puntos</strong> <i class="fa-solid fa-ellipsis-vertical text-emerald-600 mx-0.5"></i> en la esquina superior derecha.</li>
+                                <li>Selecciona la opción <strong class="text-slate-800">"Agregar a la pantalla principal"</strong> o <strong class="text-slate-800">"Instalar aplicación"</strong>.</li>
+                                <li>Sigue las instrucciones en pantalla para confirmar la instalación.</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white border-t border-slate-100 flex justify-center">
+                        <button @click="installModal = false" class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-bold py-3 px-8 rounded-xl w-full hover:from-emerald-700 hover:to-teal-800 transition-colors">
+                            Entendido
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Calendario para Citas -->
+            <div x-show="calendarModal" @keydown.escape.window="calendarModal = false" class="fixed inset-0 bg-black/75 flex items-center justify-center z-50 p-4" x-transition.opacity style="display: none;">
+                <div @click.away="calendarModal = false" class="bg-white rounded-3xl shadow-2xl w-full max-w-sm border border-slate-100 overflow-hidden" x-transition.scale>
+                    <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-5 text-center">
+                        <h3 class="text-xl font-bold flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-calendar-check"></i> Agenda tu Consulta
+                        </h3>
+                        <p class="text-emerald-100 text-xs mt-1">Elige un día disponible para continuar</p>
+                    </div>
+                    <div class="p-5">
+                        <!-- Navegación de Meses -->
+                        <div class="flex items-center justify-between mb-4 bg-slate-50 p-2 rounded-xl border border-slate-100">
+                            <button @click="previousMonth()" class="p-2 rounded-lg hover:bg-white hover:shadow-sm text-slate-700 transition">
+                                <i class="fa-solid fa-chevron-left text-sm"></i>
+                            </button>
+                            <h4 class="font-bold text-slate-800 text-sm tracking-wide uppercase" x-text="`${monthNames[currentMonth]} ${currentYear}`"></h4>
+                            <button @click="nextMonth()" class="p-2 rounded-lg hover:bg-white hover:shadow-sm text-slate-700 transition">
+                                <i class="fa-solid fa-chevron-right text-sm"></i>
+                            </button>
+                        </div>
+
+                        <!-- Días de la Semana -->
+                        <div class="grid grid-cols-7 gap-1 text-center text-xs font-semibold text-slate-400 mb-2">
+                            <template x-for="day in dayNames" :key="day">
+                                <div class="py-1" x-text="day"></div>
+                            </template>
+                        </div>
+
+                        <!-- Grilla de Días -->
+                        <div class="grid grid-cols-7 gap-1">
+                            <template x-for="day in calendarDays" :key="day.id">
+                                <div class="text-center py-1">
+                                    <button x-show="day.date" 
+                                            @click="selectDate(day)"
+                                             :class="{
+                                                'bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md font-bold scale-105': day.isSelected,
+                                                'text-slate-800 hover:bg-emerald-50 hover:text-emerald-700': !day.isSelected && !day.isPast && !day.isSunday,
+                                                'text-slate-300 cursor-not-allowed opacity-40': day.isPast || day.isSunday,
+                                                'border-2 border-emerald-500 font-bold': day.isToday && !day.isSelected
+                                            }" 
+                                             class="w-9 h-9 rounded-xl transition-all flex items-center justify-center text-xs"
+                                             :disabled="day.isPast || day.isSunday">
+                                        <span x-text="day.date"></span>
+                                    </button>
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- Indicadores -->
+                        <div class="flex justify-between items-center text-[10px] text-slate-400 mt-4 px-2 border-t border-slate-100 pt-3">
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full border border-emerald-500"></span> Hoy</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Seleccionado</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-slate-200"></span> No Disponible</span>
+                        </div>
+
+                        <div class="mt-5 flex gap-2">
+                            <button @click="calendarModal = false" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 px-4 rounded-xl transition text-xs">
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Selección de Hora -->
+            <div x-show="timePickerModal" @keydown.escape.window="timePickerModal = false" class="fixed inset-0 bg-black/75 flex items-center justify-center z-[51] p-4" x-transition.opacity style="display: none;">
+                <div @click.away="timePickerModal = false" class="bg-white rounded-3xl shadow-2xl w-full max-w-sm max-h-[85vh] flex flex-col border border-slate-100 overflow-hidden" x-transition.scale>
+                    <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-5 text-center">
+                        <h3 class="text-lg font-bold">Selecciona una Hora</h3>
+                        <p class="text-emerald-100 text-xs mt-1" x-text="selectedDate ? `Para el ${selectedDate.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}` : ''"></p>
+                    </div>
+                    
+                    <!-- Horarios -->
+                    <div class="p-6 overflow-y-auto flex-grow custom-scrollbar bg-slate-50">
+                        <div class="grid grid-cols-2 gap-3 text-center">
+                            <template x-if="availableTimes.length > 0">
+                                <template x-for="time in availableTimes" :key="time">
+                                    <button @click="selectedTime = time" 
+                                            :class="selectedTime === time ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md font-semibold scale-102 border-transparent' : 'bg-white hover:bg-emerald-50 text-slate-700 border-slate-100'" 
+                                            class="py-3 px-3 rounded-xl text-xs font-medium transition-all duration-200 border shadow-sm">
+                                        <span x-text="time"></span>
+                                    </button>
+                                </template>
+                            </template>
+                            <template x-if="availableTimes.length === 0 && selectedDate">
+                                <p class="col-span-full text-slate-500 text-xs py-6">No hay horarios disponibles para este día.</p>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- Acciones del Horario -->
+                    <div class="p-4 bg-white border-t border-slate-100 flex gap-3">
+                        <button @click="timePickerModal = false" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 px-4 rounded-xl transition text-xs">
+                            Atrás
+                        </button>
+                        <button @click="confirmAppointment()" 
+                                :disabled="!selectedTime" 
+                                :class="!selectedTime ? 'bg-emerald-200 cursor-not-allowed text-white' : 'bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white'" 
+                                class="w-2/3 font-bold py-3 px-4 rounded-xl transition shadow-md text-xs">
+                            Confirmar Cita
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Confirmación Exitosa -->
+            <div x-show="successModal" @keydown.escape.window="successModal = false" class="fixed inset-0 bg-black/75 flex items-center justify-center z-[52] p-4" x-transition.opacity style="display: none;">
+                <div @click.away="successModal = false" class="bg-white rounded-3xl shadow-2xl w-full max-w-sm text-center border border-slate-100 overflow-hidden" x-transition.scale>
+                    <div class="p-8 text-center">
+                        <div class="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4 animate-bounce">
+                            <i class="fa-solid fa-circle-check text-5xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800">¡Cita Agendada!</h3>
+                        <p class="text-slate-500 text-xs mt-2">Tu consulta con Clarity Óptica ha sido agendada con éxito.</p>
+                        
+                        <!-- Detalles de la reserva -->
+                        <div class="mt-6 bg-slate-50 rounded-2xl p-4 border border-slate-100 text-left text-xs space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Especialista:</span>
+                                <span class="font-semibold text-slate-700">Dra. Soraya Pinzón</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Fecha:</span>
+                                <span class="font-semibold text-slate-700" x-text="bookedDateString"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Hora:</span>
+                                <span class="font-semibold text-slate-700" x-text="bookedTimeString"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Modalidad:</span>
+                                <span class="font-semibold text-emerald-600">Presencial / Online</span>
+                            </div>
+                        </div>
+
+                        <!-- Botón de Acción -->
+                        <div class="mt-8 space-y-2">
+                            <a :href="getWhatsAppConfirmationLink()" target="_blank" class="block w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-xl text-sm shadow transition-colors">
+                                <i class="fa-brands fa-whatsapp mr-1.5 text-base"></i> Confirmar por WhatsApp
+                            </a>
+                            <button @click="successModal = false" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 px-4 rounded-xl transition text-xs">
+                                Entendido
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function appData() {
+            return {
+                // Estados de Modales
+                qrModal: false,
+                servicesModal: false,
+                scheduleModal: false,
+                installModal: false,
+                calendarModal: false,
+                timePickerModal: false,
+                successModal: false,
+
+                // Propiedades del Calendario
+                currentMonth: new Date().getMonth(),
+                currentYear: new Date().getFullYear(),
+                selectedDate: null,
+                selectedTime: null,
+                calendarDays: [],
+                monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                dayNames: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sá"],
+
+                // Variables para almacenamiento de reserva confirmada
+                bookedDateString: '',
+                bookedTimeString: '',
+
+                // Inicializar
+                init() {
+                    this.generateCalendarDays();
+                },
+
+                // Generar URL dinámico para el Código QR basado en el URL actual del navegador
+                getQrCodeUrl() {
+                    const currentUrl = window.location.href || 'https://example.com';
+                    return `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(currentUrl)}`;
+                },
+
+                // Generación de la grilla de días
+                generateCalendarDays() {
+                    const firstDay = new Date(this.currentYear, this.currentMonth, 1).getDay();
+                    const daysInMonth = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    let days = [];
+                    // Rellenar espacios vacíos del mes anterior
+                    for (let i = 0; i < firstDay; i++) {
+                        days.push({ id: `empty-${i}` });
+                    }
+
+                    // Rellenar días del mes actual
+                    for (let i = 1; i <= daysInMonth; i++) {
+                        const date = new Date(this.currentYear, this.currentMonth, i);
+                        const isPast = date < today;
+                        const isToday = date.getTime() === today.getTime();
+                        const isSunday = date.getDay() === 0;
+                        
+                        days.push({
+                            id: `day-${i}`,
+                            date: i,
+                            isToday,
+                            isPast,
+                            isSunday,
+                            isSelected: this.selectedDate && this.selectedDate.getTime() === date.getTime(),
+                        });
+                    }
+                    this.calendarDays = days;
+                },
+
+                // Seleccionar una fecha del calendario
+                selectDate(day) {
+                    if (day.isPast || day.isSunday) return;
+                    this.selectedDate = new Date(this.currentYear, this.currentMonth, day.date);
+                    this.selectedTime = null;
+                    this.generateCalendarDays(); // Actualiza visual de selección
+                    this.timePickerModal = true; // Abre selector de horas
+                },
+
+                // Navegar al mes anterior
+                previousMonth() {
+                    if (this.currentMonth === 0) {
+                        this.currentMonth = 11;
+                        this.currentYear--;
+                    } else {
+                        this.currentMonth--;
+                    }
+                    this.generateCalendarDays();
+                },
+
+                // Navegar al mes siguiente
+                nextMonth() {
+                    if (this.currentMonth === 11) {
+                        this.currentMonth = 0;
+                        this.currentYear++;
+                    } else {
+                        this.currentMonth++;
+                    }
+                    this.generateCalendarDays();
+                },
+
+                // Confirmación de la Cita
+                confirmAppointment() {
+                    if (!this.selectedDate || !this.selectedTime) return;
+
+                    // Guardamos la fecha seleccionada con formato legible
+                    this.bookedDateString = this.selectedDate.toLocaleDateString('es-ES', { 
+                        weekday: 'long', 
+                        day: 'numeric', 
+                        month: 'long', 
+                        year: 'numeric' 
+                    });
+                    this.bookedTimeString = this.selectedTime;
+
+                    // Cerramos los modales activos
+                    this.timePickerModal = false;
+                    this.calendarModal = false;
+
+                    // Abrimos pantalla de confirmación exitosa
+                    this.successModal = true;
+                },
+
+                // Enlace de confirmación automatizada por WhatsApp
+                getWhatsAppConfirmationLink() {
+                    if (!this.bookedDateString || !this.bookedTimeString) return 'https://wa.me/3205224697';
+                    const baseMessage = `Hola Clarity Óptica, me gustaría confirmar la reserva realizada en su Tarjeta Digital.\n\n📅 Fecha: ${this.bookedDateString}\n⏰ Hora: ${this.bookedTimeString}`;
+                    return `https://wa.me/32052246?text=${encodeURIComponent(baseMessage)}`;
+                },
+
+                // Horas dinámicas disponibles según el día de la semana
+                get availableTimes() {
+                    if (!this.selectedDate) return [];
+                    
+                    const dayOfWeek = this.selectedDate.getDay();
+                    if (dayOfWeek === 0) return []; // Domingo no disponible
+
+                    let times = [];
+                    const startTime = 9; // 9:00 AM
+                    const endTime = (dayOfWeek === 6) ? 13 : 18; // Sábados hasta la 1:00 PM, de Lunes a Viernes hasta las 6:00 PM
+
+                    for (let hour = startTime; hour < endTime; hour++) {
+                        // Formato amigable de 12 horas
+                        const displayHour = hour > 12 ? hour - 12 : hour;
+                        const ampm = hour >= 12 ? 'PM' : 'AM';
+                        
+                        times.push(`${displayHour}:00 ${ampm}`);
+                        times.push(`${displayHour}:30 ${ampm}`);
+                    }
+                    return times;
+                }
+            }
+        }
+
+        // Función para descargar la tarjeta de contacto directamente al dispositivo
+        function downloadVCard() {
+            const vcardContent = `BEGIN:VCARD
+VERSION:3.0
+N:Pérez;Ana;;Dra.;
+FN:Dra. Ana Pérez
+ORG:Nutrición Funcional
+TITLE:Nutricionista Funcional
+TEL;TYPE=CELL,VOICE;VALUE=uri:tel:+1234567890
+EMAIL;TYPE=PREF,INTERNET:ana.perez@email.com
+URL;TYPE=pref:https://example.com
+NOTE:Nutrióloga funcional, especializada en planes alimenticios integrales.
+END:VCARD`;
+
+            // Creamos el archivo binario simulado (Blob)
+            const blob = new Blob([vcardContent], { type: 'text/vcard;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            
+            // Creamos un elemento anchor dinámico para descargar el archivo
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Clarity Óptica';
+            document.body.appendChild(link);
+            link.click();
+            
+            // Limpieza del DOM y revocación del enlace creado
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
