@@ -84,7 +84,7 @@
                         <img class="w-36 h-36 rounded-full border-4 border-white object-cover shadow-xl bg-slate-100" 
                              src="https://i.postimg.cc/MZsgjbxk/CLARITY.png" 
                              alt="Foto de perfil de la Dra. Ana Pérez" 
-                             onerror="this.onerror=null;this.src='https://placehold.co/150x150/e2e8f0/0f172a?text=Dra.+Ana+Perez';">
+                             onerror="this.onerror=null;this.src='https://placehold.co/150x150/e2e8f0/0f172a?text">
                         <div class="absolute bottom-2 right-2 bg-emerald-500 rounded-full w-8 h-8 flex items-center justify-center border-2 border-white shadow">
                             <i class="fa-solid fa-check text-white text-sm"></i>
                         </div>
@@ -104,7 +104,7 @@
                 <div class="px-6 pt-6 pb-4">
                     <div class="grid grid-cols-3 gap-y-6 gap-x-4">
                         <!-- Llamar -->
-                        <a href="tel:+3146280348" class="flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.1s;" title="Llámame">
+                        <a href="tel:3146280348" class="flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.1s;" title="Llámame">
                             <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center icon-shadow">
                                 <i class="fa-solid fa-phone text-2xl"></i>
                             </div>
@@ -667,17 +667,21 @@
 
         // Función para descargar la tarjeta de contacto directamente al dispositivo
         function downloadVCard() {
-            const vcardContent = `BEGIN:VCARD
+
+    const vcardContent = `BEGIN:VCARD
 VERSION:3.0
-N:Óptica Clarity.;
+N:Clarity;Óptica;;;
 FN:ÓPTICA CLARITY
-ORG:Manizales
-TITLE:ÓPTICAS
-TEL;TYPE=CELL,VOICE;VALUE=uri:tel:573205224697
-EMAIL;TYPE=PREF,INTERNET:claritycentroptico@gmail.com
-URL;TYPE=pref:https://cards-2026.github.io/clarity/
+ORG:ÓPTICA CLARITY
+TITLE:Centro Óptico Especializado
+TEL;TYPE=CELL:+573205224697
+EMAIL:claritycentroptico@gmail.com
+URL:https://cards-2026.github.io/clarity/
 NOTE:Centro Óptico Especializado en la Salud Visual.
+ADR:;;;Manizales;Caldas;;Colombia
 END:VCARD`;
+
+    
 
             // Creamos el archivo binario simulado (Blob)
             const blob = new Blob([vcardContent], { type: 'text/vcard;charset=utf-8' });
