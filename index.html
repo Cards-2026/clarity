@@ -637,7 +637,7 @@
                 // Enlace de confirmación automatizada por WhatsApp
                 getWhatsAppConfirmationLink() {
                     if (!this.bookedDateString || !this.bookedTimeString) return 'https://wa.me/573205224697';
-                    const baseMessage = `Hola Clarity Óptica, me gustaría confirmar la reserva realizada en su Tarjeta Digital.\n\n📅 Fecha: ${this.bookedDateString}\n⏰ Hora: ${this.bookedTimeString}`;
+                    const baseMessage = `Hola Clarity Óptica, me gustaría confirmar la reserva realizada en su Tarjeta Digital.\n\n * Fecha: ${this.bookedDateString}\n * Hora: ${this.bookedTimeString}`;
                     return `https://wa.me/573205224697?text=${encodeURIComponent(baseMessage)}`;
                 },
 
