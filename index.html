@@ -96,7 +96,7 @@
                     <h1 class="text-3xl font-bold text-slate-800 tracking-tight">CLARITY ÓPTICA</h1>
                     <p class="text-emerald-600 font-semibold text-lg">Taller Óptico</p>
                     <p class="text-xs text-slate-400 mt-2 italic flex items-center justify-center gap-1">
-                        <i class="fa-solid fa-circle-info text-emerald-500"></i> Toca los botones para interactuar
+                        <i class=""></i> Toca los botones para interactuar
                     </p>
                 </div>
 
@@ -146,11 +146,11 @@
                             <p class="text-xs font-semibold text-slate-600 mt-2">WhatsApp</p>
                         </a>
                         <!-- Correo -->
-                        <a href="https://wa.link/r8bxd0" target="_blank"class="flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.7s;" title="Envíame un Mensaje">
+                        <a href="mailto:claritycentroptico@gmail.com" target="_blank"class="flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.7s;" title="Envíame un Mensaje">
                             <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center icon-shadow">
                                 <i class="fa-solid fa-envelope text-2xl"></i>
                             </div>
-                            <p class="text-xs font-semibold text-slate-600 mt-2">Mensaje</p>
+                            <p class="text-xs font-semibold text-slate-600 mt-2">Correo</p>
                         </a>
                         <!-- Ubicación -->
                         <a href="https://www.google.com/maps/place/Cl+24+%2321-44,+Manizales,+Caldas/@5.0680275,-75.5190666,17z/data=!4m6!3m5!1s0x8e476ffa73c3076f:0x4599efa8c8bf7aff!8m2!3d5.0680275!4d-75.5164917!16s%2Fg%2F11sdqsg6cn?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="flex flex-col items-center text-center group interactive-element icon-animate" style="animation-delay: 0.8s;" title="Ver mi Ubicación">
@@ -667,21 +667,17 @@
 
         // Función para descargar la tarjeta de contacto directamente al dispositivo
         function downloadVCard() {
-
-    const vcardContent = `BEGIN:VCARD
+            const vcardContent = `BEGIN:VCARD
 VERSION:3.0
-N:Clarity;Óptica;;;
+N:Óptica Clarity.;
 FN:ÓPTICA CLARITY
-ORG:ÓPTICA CLARITY
-TITLE:Centro Óptico Especializado
-TEL;TYPE=CELL:+573205224697
-EMAIL:claritycentroptico@gmail.com
-URL:https://cards-2026.github.io/clarity/
+ORG:Manizales
+TITLE:ÓPTICAS
+TEL;TYPE=CELL,VOICE;VALUE=uri:tel:3205224697
+EMAIL;TYPE=PREF,INTERNET:claritycentroptico@gmail.com
+URL;TYPE=pref:https://cards-2026.github.io/clarity/
 NOTE:Centro Óptico Especializado en la Salud Visual.
-ADR:;;;Manizales;Caldas;;Colombia
 END:VCARD`;
-
-    
 
             // Creamos el archivo binario simulado (Blob)
             const blob = new Blob([vcardContent], { type: 'text/vcard;charset=utf-8' });
